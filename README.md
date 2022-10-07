@@ -13,11 +13,30 @@
 * **MVC(model view controller)**
   * view -> 화면 그리는 데에 모든 역량 집중
   * controller, model -> 서버, 내부 장치에 역량 집중
-  HElloController에 다음 코드 추가
+  HelloController에 다음 코드 추가
+  
   
   ```
   @GetMapping("hello-mvc")
   public String helloMvc(@RequestParam("name") String name, Model model){
   model.addAttribute("name",name);
   return "hello-template"; }
+  ```
+  ("name"이 키 값, String name의 name은 그냥 파라미터)
+  
+  **원리**
+  return 한 template의 html로 이동함
+  
+  예를 들어 내가 localhost:8080/hello-mvc?name=spring!!! 으로 하면
+  
+  name 키가 반응해서 String name의 name이 spring!!!으로 바뀌고 model에 담김 - ${name}이 모델에서 값을 꺼내는거임
+  
+  그리고 hello-template으로 이동해서 hello-spring을 반환하는거임
+
+  따라서 localhost:8080/hello-mvc?name=spring!!! 의 소스 보기 누르면 html 문법 안에 hello spring!!!이 있음
+  
+
+  hello-template.html 코드
+  ```
+  <p th:text="'hello ' + ${name}">hello! empty</p>
   ```
