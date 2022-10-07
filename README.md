@@ -14,6 +14,7 @@
   * view -> 화면 그리는 데에 모든 역량 집중
   * controller, model -> 서버, 내부 장치에 역량 집중
   HElloController에 다음 코드 추가
+  
   ```
   
 @GetMapping("hello-mvc")
