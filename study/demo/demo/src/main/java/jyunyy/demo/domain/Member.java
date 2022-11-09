@@ -7,7 +7,7 @@ public class Member {
     public Long getId(){
         return id;
     }
-    public void setId(){
+    public void setId(long id){
         this.id=id;
     }
 
