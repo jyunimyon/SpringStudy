@@ -100,7 +100,7 @@
     개발자가 자신이 개발한 프로그램에서 가정하고 있는 사실이 올바른 지 검사할 수 있는 기능이다
     
     즉 검증을 위한 것이다
-    ```
+    ```Java
     import static org.assertj.core.api.Assertions.*;
     ```
     import를 static으로 할 경우 코드에서
@@ -109,7 +109,7 @@
     ```
     대신에
     ```
-    Assertions.assertThat(result).isEqualTo(member);
+    assertThat(result).isEqualTo(member);
     ```
     를 바로 쓸 수 있어 편리하다.
     
