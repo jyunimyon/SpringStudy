@@ -70,6 +70,12 @@
 * **회원 리포지토리 인터페이스**
   * MemberRepository.java 인터페이스 구현
   * MemoryMemberRepository에서 구현할 함수 제한
+  ```
+  Member save(Member member);
+  Optional<Member> findById(Long id);
+  Optional<Member> findByName(String name);
+  List<Member> findAll();
+  ```
 
 
 
