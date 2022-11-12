@@ -60,5 +60,16 @@
     
 * **회원 객체 생성**
   * Member.java 클래스로 구현
-    * 아아ㅏㅇ
-  
+  * id와 name을 저장
+  ```
+  private Long id;
+  private String name;
+  ```
+  * private 선언, setter/ getter함수로 접근
+
+* **회원 리포지토리 인터페이스**
+  * MemberRepository.java 인터페이스 구현
+  * MemoryMemberRepository에서 구현할 함수 제한
+
+
+
