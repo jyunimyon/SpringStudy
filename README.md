@@ -91,10 +91,10 @@
   * findByName 함수에서는 이름(name)을 통해 해당 Member 값 반환
 
 #### 12강 회원 리포지토리 테스트 케이스 작성
-* **테스트 케이스 작성의 이유: **
+* **테스트 케이스 작성의 이유:**
   보통은 main 메소드나 컨트롤러를 통해 실행하지만 시간이 오래 걸리며 반복이 어렵다는 단점 있음
   --> JUnit 프레임워크 이용, test case 작성 및 실행
-* **test의 하위 폴더에 MemoryMemberRepositoryTest.java 구현
+* **test의 하위 폴더에 MemoryMemberRepositoryTest.java 구현**
   * MemoryMemberRepository에 있는 여러가지 메소드들을 테스트할 코드를 구현한다.
     * Assertion이란?
     개발자가 자신이 개발한 프로그램에서 가정하고 있는 사실이 올바른 지 검사할 수 있는 기능이다
