@@ -226,5 +226,5 @@
   memberService = new MemberService(memberRepository);
   }
   ```  
-+짠~ 같은 인스턴스 사용 가능 ~
++ 짠~ 같은 인스턴스 사용 가능 ~
  
