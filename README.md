@@ -203,7 +203,7 @@
 + 객체 누적 방지를 위해 MemoryMemberRepository의 clearStore를 호출 해야 함
 + MemberService와 MemberServiceTest의 main 메소드에서 MemoryMemberRepository를 직접 생성할 경우 다른 인스턴스를 사용하게 됨
 + 해결 방법 
-  + MemberService의 MemberRepository객체 생성 방법을 생성자로 바꾸어준다 
+  + MemberService의 MemberRepository 객체 생성 방법을 생성자로 바꾸어준다 
   ```Java
   private final MemberRepository memberRepository = new MemoryMemberRepository(); // 선언과 생성이 main에서 이루어짐
   ```
@@ -216,7 +216,7 @@
    }
   ```
   + MemberServiveTest에서 BeforeEach 이용, 메소드 실행 전마다 객체 생성 메소드가 호출되게 함
-    + 이렇듯 직접 생성하는 것이 아니라 외부의 것을 받아와서 사용하는 것이 DI
+    + **이렇듯 직접 생성하는 것이 아니라 외부의 것을 받아와서 사용하는 것이 DI**
   ```Java
   MemberService memberService;
   MemoryMemberRepository memberRepository;
