@@ -18,7 +18,7 @@
   HelloController에 다음 코드 추가
   
   
-  ```
+  ```Java
   @GetMapping("hello-mvc")
   public String helloMvc(@RequestParam("name") String name, Model model){
   model.addAttribute("name",name);
@@ -41,7 +41,7 @@
   
 
   hello-template.html 코드
-  ```
+  ```html
   <p th:text="'hello ' + ${name}">hello! empty</p>
   ```
 ## section 4
@@ -61,7 +61,7 @@
 * **회원 객체 생성**
   * Member.java 클래스로 구현
   * id와 name을 저장
-  ```
+  ```Java
   private Long id;
   private String name;
   ```
@@ -70,7 +70,7 @@
 * **회원 리포지토리 인터페이스**
   * MemberRepository.java 인터페이스 구현
   * MemoryMemberRepository에서 구현할 함수 제한
-  ```
+  ```Java
   Member save(Member member);
   Optional<Member> findById(Long id);
   Optional<Member> findByName(String name);
@@ -82,7 +82,7 @@
       그냥 null값을 반환하지 않는다.
 * **회원 리포지토리 구현체**
   * 키는 아이디로, 값은 Member 클래스로
-  ```
+  ```Java
   private static Map<Long, Member> store = new HashMap<>();
   ```
   * save 함수에서는 아이디 세팅 후 store객체에 저장
@@ -104,11 +104,11 @@
     import static org.assertj.core.api.Assertions.*;
     ```
     import를 static으로 할 경우 코드에서
-    ```
+    ```Java
     Assertions.assertThat(result).isEqualTo(member);
     ```
     대신에
-    ```
+    ```Java
     assertThat(result).isEqualTo(member);
     ```
     를 바로 쓸 수 있어 편리하다.
