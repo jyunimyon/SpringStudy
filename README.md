@@ -232,4 +232,19 @@
 ----------------------
 #### 15강 스프링 빈과 의존관계 ㅎㅎ
 
+MemberService와 MemberRepository에 화면을 붙이고 싶음 --> controller와 vue template있어야 함
+* **Spring Bean 등록 방법**
+  1. **컴포넌트 스캔**: Spring이 뜰 때 component와 관련된 annotation이 있으면 스프링 빈을 만들어서 container에 등록
+  2. 자바 코드로 직접 등록
+* MemberController의 구현
+  * MemberService 객체 생성 : main에서 new하지 않고 spring container에 객체 등록 후 가져다 씀
+    1. new 대신 constructor 생성
+    2. @Autowired --> 객체 생성 시점에 container에서 스프링 빈을 찾아 주입 (여기선 memberService와 memberController의 연결)
+    ```Java
+    private final MemberService memberService;
+    @Autowired
+    public MemberController(MemberService memberService) {
+    this.memberService = memberService;
+      }
+    ```
  
