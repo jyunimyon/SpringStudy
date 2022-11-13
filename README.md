@@ -247,4 +247,45 @@ MemberService와 MemberRepository에 화면을 붙이고 싶음 --> controller�
     this.memberService = memberService;
       }
     ```
- 
+* MemberService 와 MemberRepository 클래스의 변경
+  * 순수한 자바 클래스는 Spring이 인식할 수 없음 --> annotation 추가 필요
+  ```Java
+  @Service
+  public class MemberService {
+  ```
+  * 여기서 AutoWired는 memberService와 memberRepository간의 연결을 의미
+  ```Java
+  @Autowired
+  public MemberService(MemberRepository memberRepository) {
+  ```
+  * @Repository의 추가
+  ```Java
+  @Repository
+  public class MemoryMemberRepository implements MemberRepository {}
+  ```
+* **컨트롤러, 서비스, 리포지토리 등은 이렇게 정형화 되어있다.**
+-----------------------
+#### 16강 자바 코드로 스프링 빈 등록하기
+* SpringConfig.java 구현
+  * Component annotation은 제거 후 구현
+  * **@Bean 사용**
+  ```
+  @Bean
+  public MemberService memberService() {
+    return new MemberService(memberRepository());
+  }
+  @Bean
+  public MemberRepository memberRepository() {
+    return new MemoryMemberRepository();
+  }
+  ```
+-------------------
+#### DI 구현의 3가지 방법
+1. constructor 주입 --> best
+2. field 주입
+3. setter 주입
+
+#### 컴포넌트 스캔보다 자바 코드를 통한 스프링 빈 등록을 권장하는 이유
+* 정형화된 컨트롤러, 서비스, 리포지토리 등은 컴포넌트 스캔이 편리함
+* 하지만 상황에 따라 구현 클래스를 변경해야 하면 관련된 모든 코드의 변경이 필요함
+* 자바 코드로 스프링 빈을 등록할 경우 '설정 파일'만 변경하면 됨
