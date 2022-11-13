@@ -269,7 +269,7 @@ MemberService와 MemberRepository에 화면을 붙이고 싶음 --> controller�
 * SpringConfig.java 구현
   * Component annotation은 제거 후 구현
   * **@Bean 사용**
-  ```
+  ```Java
   @Bean
   public MemberService memberService() {
     return new MemberService(memberRepository());
