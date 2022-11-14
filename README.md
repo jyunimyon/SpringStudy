@@ -324,7 +324,7 @@ MemberService와 MemberRepository에 화면을 붙이고 싶음 --> controller�
   * createMemberForm.html = 회원 등록 폼 html
     * method가 **post** 형식
     * 회원 등록 폼에서 이름 작성 후 등록시에 action url이 post방식으로 넘어온다는 뜻
-  ```Java
+  ```html
   <form action="/members/new" method="post">
   <div class="form-group">
   <label for="name">이름</label>
@@ -337,12 +337,31 @@ MemberService와 MemberRepository에 화면을 붙이고 싶음 --> controller�
     1. Controller내에 MembreForm클래스로 데이터를 전달 받을 객체 구현 
     2. MemberController 내에 @PostMapping 작성
     3. MemberController의 @PostMapping에 넘어온 url이 걸리게 됨
-    ```
-    @PostMapping(value = "/members/new")
-    public String create(MemberForm form) {
-    // member 객체 생성, member의 setNamme() 호출, memberService의 join() 호출
-    return "redirect:/"
-    }
-    ```
+  ```Java
+  @PostMapping
+  public String create(MemberForm form) {
+  // member 객체 생성, member의 setNamme() 호출, memberService의 join() 호출
+  return "redirect:/" // redirect
+  }
+  ```
   * **즉, 같은 url이라도 전달 방식이 다르면 다른 메소드가 실행된다**
-
+-------------------------
+### 19강 회원 웹 기능-회원 조회
+* **@GetMapping** 사용, 회원 목록 선택 시 members/memberList.html 전달
+* memberList.html 구현
+* **타임리프가 본격적으로 동작**
+  * @GetMapping(value = "/members")의 return 동작 전에 아래 로직을 통해 key members의 value로 list의 모든 값을 담아둠
+  ```Java
+  List<Member> members = memberService.findMembers();
+  model.addAttribute("members", members);
+  ```
+  * 타임 리프의 each 문법으로 루프를 돈다
+  * ${ } 는 model 안의 값을 꺼내는 것
+  * 따라서 list안의 members객체 수만큼 id와 name 출력
+  ```html
+  //memberList.html
+  <tr th:each="member : ${members}">
+  <td th:text="${member.id}"></td>
+  <td th:text="${member.name}"></td>
+  </tr>
+  ```
