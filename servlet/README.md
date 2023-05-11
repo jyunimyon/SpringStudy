@@ -31,3 +31,24 @@ HTTP 응답 정보를 편리하게 입력할 수 있다. 즉, Request 객체는 
 호출, 종료하는 생명주기를 관리한다. 
 
 ![IMG_0285](https://github.com/jyunimyon/SpringStudy/assets/101866554/df3564b2-f4e3-4fbe-b16c-774d0bf16b71)
+
+---
+### 프로젝트 생성
+
+[start.io](https://start.spring.io) 에서 스프링 프로젝트를 생성하여 다운 받는다. (_서블릿은 스프링과 연관이 없지만 내장 톰캣 등 여러 편의 기능 때문에 스프링 환경에서 서블릿을 실행하는 것이다_)
+<br>
+>✅ 가장 최신에 나온 스프링은 버전이 3 이상이다. 하지만 스프링 3 이상부터는 자바 17이 필수이다. 하지만 나는 타 프로젝트 때문에 자바 11을 써야해서 최근에 17 ➡️ 11로 변경을 하였기 때문에 그냥 버전 2.7.11 사용
+
+- Gradle-Groovy
+- java
+- 2.7.11 version
+- packaging : war
+- java version : 11
+- dependencies : Spring Web, Lombok
+<br>
+파일 생성 후, 
+
+- `Build.gradle` 파일 open
+- settings ➡️ Build, Execution, Deployment ➡️ Build Tools ➡️ Gradle <br>
+  Build and run using & Run tests using : Gradle ➡️ IntelliJ IDEA
+  > 나같은 경우엔 무료 인텔리제이를 사용해서 위와 같이 바꿀 경우 War 파일에서 톰캣이 정상작동하지 않는다. 난 실행 속도가 느리더라도 좀 참아야 한다.
