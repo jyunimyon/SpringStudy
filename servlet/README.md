@@ -107,10 +107,11 @@ welcome page는 특정 url을 보내지 않고 [localhost:8080](http://localhost
 **`HttpServletRequest`** 는 HTTP 요청 메세지를 편리하게 사용할 수 있도록 메세지 파싱 정보를 담아둔 객체이다.
 
 > HTTP 요청 메세지는 START LINE, 헤더, 바디로 이루어진다 
+
 <br><br>
 
-✅ 기본 기능
-<br>
+#### ✅ 기본 기능
+
 1. start line 정보
 2. 헤더 정보
 3. 헤더 조회
@@ -132,3 +133,11 @@ public class RequestHeaderServlet extends HttpServlet {
 }
 ```
 > 엄청 중요한 내용은 없고 조금 중요하다 싶으면 [코드](https://github.com/jyunimyon/SpringStudy/blob/main/servlet/src/main/java/hello/servlet/basic/request/RequestHeaderServlet.java)에 주석으로 달아두었다. 
+<br>
+
+#### ✅ HTTP 요청 데이터
+HTTP 요청 메세지로 클라이언트가 서버에 데이터를 전달하는 방법은 주로 다음 3가지를 이용한다.
+
+1. GET 메소드, 쿼리 파라미터<br>ex:`/url?username=jyuny&age=22`<br>
+2. POST 메소드, HTML FORM<br>메세지 바디에 <U>쿼리 파라미터 형식</U>으로 전달 <br>ex: `content-type: application/x-www-form-urlencoded`<br>
+3. POST 메소드(주로), HTTP message body<br> 데이터 형식은 주로 JSON 사용<br>
