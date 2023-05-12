@@ -260,3 +260,6 @@ postman에서 다음과 같이 데이터를 전송하면
 - message body: `{"username":"jyuny", "age":"22"}`
 
 콘솔에서 다음과 같은 결과를 얻을 수 있다 ➡️
+<img width="283" alt="json" src="https://github.com/jyunimyon/SpringStudy/assets/101866554/0b56fde0-0b68-4f9e-b1d4-3c363024c4e3">
+
+
