@@ -185,4 +185,78 @@ public class RequestParamServlet extends HttpServlet {
 
 1. localhost:8080/basic/hello-form.html 실행
 2. 웹 브라우저에서 HTTP 메세지 생성
-3. 
+
+> **postman을 이용한 테스트** 이런 테스트 하나하나에 `hello-form.html`와 같은 html form을 만들지 않고 다양한 타입의 데이터를 전송할 수 이따! 매우 편하다 🥲🥲
+
+#### 3️⃣ HTTP 요청 데이터 - POST/ 메세지 바디 - 단순 텍스트
+
+HTTP API에서 주로 사용한다. 첫 번째 예시는 단순 텍스트 메세지를 메세지 바디에 담아 전송하고 읽는 것이다.
+
+**RequestBodyStringServlet.java**
+```java
+@WebServlet(name="requestBodyStringServlet",urlPatterns = "/request-body-string")
+public class RequestBodyStringServlet extends HttpServlet {
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ServletInputStream inputStream = request.getInputStream(); 
+        String messagebody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+        System.out.println("messagebody = " + messagebody);
+        response.getWriter().write("ok");
+    }
+}
+```
+- `getInputStream()` 메소드로 메세지 바디의 내용을 바이트 코드로 바로 얻을 수 있다.
+- `StreamUtils`는 스프링이 제공하는 유틸리티 클래스이다. <br> 바이트 코드를 우리가 읽을 수 있는 문자로 인코딩하기 위해선 **인코딩 정보**를 알려줘야 한다. 여기선 `chatset=utf-8`로 지정하였다.
+
+postman에서 다음과 같이 데이터를 전송하면
+- url: localhost:8080/request-body-string
+- content-type: text/plain
+- message body: hello
+
+콘솔에서 다음과 같은 결과를 얻을 수 있다. 
+➡️ `messagebody=hello`
+
+#### 4️⃣ HTTP 요청 데이터 - POST/ 메세지 바디 - JSON
+
+json은 HTTP API에서 가장 많이 사용하는 데이터 형식이다. 
+<br>
+ex: `{"username":"jyuny", "age":"22"}`
+<br>
+
+> ✅ JSON 결과를 파싱하기 위해선 먼저 JSON 문자열을 **파싱 가능한 자바 객체로 변환**하여야 한다. 이 때 가장 많이 사용하는 JSON 변환 라이브러리는 스프링이 기본 제공하는 **Jackson 라이브러리**이다. 
+
+**HelloData.java**
+```java
+@Getter 
+@Setter// 롬복 이용하여 getter,setter 메소드 작성 안 해도 됨
+public class HelloData {
+    private String username;
+    private int age;
+}
+```
+**RequestBodyJsonServlet.java**
+```java
+@WebServlet(name="requestBodyJsonServlet",urlPatterns = "/request-body-json")
+public class RequestBodyJsonServlet extends HttpServlet {
+    private ObjectMapper objectMapper=new ObjectMapper();
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ServletInputStream inputStream = request.getInputStream();
+        String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+        System.out.println("messageBody = " + messageBody);
+        //HelloData 객체로 변환
+        HelloData helloData = objectMapper.readValue(messageBody, HelloData.class); //객체로 짠 하고 변함
+        System.out.println("helloData.Username = " + helloData.getUsername());
+        System.out.println("helloData.age = " + helloData.getAge());
+        response.getWriter().write("ok");
+        
+    }
+}
+```
+
+postman에서 다음과 같이 데이터를 전송하면
+- url: localhost:8080/request-body-json
+- content-type: application/json
+- message body: `{"username":"jyuny", "age":"22"}`
+
+콘솔에서 다음과 같은 결과를 얻을 수 있다 ➡️
