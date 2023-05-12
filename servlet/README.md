@@ -179,10 +179,9 @@ public class RequestParamServlet extends HttpServlet {
 
 **[`hello-form.html`](https://github.com/jyunimyon/SpringStudy/blob/main/servlet/src/main/webapp/basic/hello-form.html)**
 
-⭐ 쿼리 파라미터로 전달하는 것은 동일하기 때문에 쿼리 파라미터 조회 메소드를 그대로 사용한다.
-
-> 즉, `request.getParameter()`은 GET url 쿼리 파라미터 형식과 POST html form 형식 모두 지원한다
-
+⭐ 쿼리 파라미터로 전달하는 것은 동일하기 때문에 쿼리 파라미터 조회 메소드를 그대로 사용한다. 즉, `request.getParameter()`은 **GET url 쿼리 파라미터 형식과 POST html form 형식 모두 지원**한다
+<br>
+동작 방식
 1. localhost:8080/basic/hello-form.html 실행
 2. 웹 브라우저에서 HTTP 메세지 생성<br> 요청 url: localhost:8080/request-param, content-type: application/x-www-form-urlencoded
 3. message body: `username=jyuny&age=22`
@@ -191,7 +190,6 @@ public class RequestParamServlet extends HttpServlet {
 
 postman을 이용한 테스트 결과 ➡️
 <img width="278" alt="query" src="https://github.com/jyunimyon/SpringStudy/assets/101866554/627730cf-fce1-4ae0-8b40-814b47b224de">
-> 나 왜 인텔리제이 한글 깨지지? 얼른 해결하좌...
 
 #### 3️⃣ HTTP 요청 데이터 - POST/ 메세지 바디 - 단순 텍스트
 
