@@ -174,3 +174,14 @@ public class RequestParamServlet extends HttpServlet {
 
 > `username=jyuny&username=kangin`과 같이 하나의 파라미터 이름에 값이 복수라면 `getParameterValues()`를 사용해야 한다. 하지만 실무에서 이럴만한 상황은 거의 없다 😊
 
+#### 2️⃣ HTTP 요청 데이터 - POST/ HTML form
+메세지 바디에 데이터를 넣어 보낼 때는 데이터의 **content-type**을 지정해줘야 한다. html form 을 통해 전달된 데이터는 메세지 바디에 **쿼리 파라미터 형식**으로 데이터를 전달한다. 이 때 `content-type`은 `application/x-www-form-urlencoded`이다.
+
+**[hello-form.html]**(https://github.com/jyunimyon/SpringStudy/blob/main/servlet/src/main/webapp/basic/hello-form.html)
+
+⭐ 쿼리 파라미터로 전달하는 것은 동일하기 때문에 쿼리 파라미터 조회 메소드를 그대로 사용한다.
+
+> 즉, `request.getParameter()`은 GET url 쿼리 파라미터 형식과 POST html form 형식 모두 지원한다
+
+1. localhost:8080/basic/hello-form.html 실행
+2. 
