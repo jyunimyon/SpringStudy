@@ -50,7 +50,7 @@ HTTP 응답 정보를 편리하게 입력할 수 있다. 즉, Request 객체는 
 
 - `Build.gradle` 파일 open
 - settings ➡️ Build, Execution, Deployment ➡️ Build Tools ➡️ Gradle <br>
-  Build and run using & Run tests using : Gradle ➡️ IntelliJ IDEA
+  Build and run using & Run tests using : Gradle ➡️ IntelliJ IDEA 으로 변경
   > 나같은 경우엔 무료 인텔리제이를 사용해서 위와 같이 바꿀 경우 War 파일에서 톰캣이 정상작동하지 않는다. 난 실행 속도가 느리더라도 좀 참아야 한다.
 
 ---
@@ -145,6 +145,7 @@ GET 메소드로 데이터를 전달하는 경우, 메세지 바디 없이 url�
 
 > 쿼리 파라미터는 url에 ?로 시작하여 &로 데이터를 추가하고 보낼 수 있다. ex: `localhost:8080/request-param?username=jyuny&age=22`
 
+**RequestParamServlet.java**
 ```java
 @WebServlet(name="requestParamServlet",urlPatterns = "/request-param")
 public class RequestParamServlet extends HttpServlet {
