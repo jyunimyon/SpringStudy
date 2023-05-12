@@ -116,7 +116,7 @@ welcome page는 특정 url을 보내지 않고 [localhost:8080](http://localhost
 2. 헤더 정보
 3. 헤더 조회
 4. 기타 정보
-<br><br>
+<br>
 
 **RequestHeaderServlet.java**
 ```java
@@ -135,9 +135,43 @@ public class RequestHeaderServlet extends HttpServlet {
 > 엄청 중요한 내용은 없고 조금 중요하다 싶으면 [코드](https://github.com/jyunimyon/SpringStudy/blob/main/servlet/src/main/java/hello/servlet/basic/request/RequestHeaderServlet.java)에 주석으로 달아두었다. 
 <br>
 
-#### ✅ HTTP 요청 데이터
+#### ✅ HTTP 요청 데이터 - 개요
 HTTP 요청 메세지로 클라이언트가 서버에 데이터를 전달하는 방법은 주로 다음 3가지를 이용한다.
 
-1. GET 메소드, 쿼리 파라미터<br>ex:`/url?username=jyuny&age=22`<br>
-2. POST 메소드, HTML FORM<br>메세지 바디에 <U>쿼리 파라미터 형식</U>으로 전달 <br>ex: `content-type: application/x-www-form-urlencoded`<br>
-3. POST 메소드(주로), HTTP message body<br> 데이터 형식은 주로 JSON 사용<br>
+1. GET 메소드, **쿼리 파라미터**<br>ex:`/url?username=jyuny&age=22`<br>
+2. POST 메소드, **HTML FORM**<br>메세지 바디에 <U>쿼리 파라미터 형식</U>으로 전달 <br>ex: `content-type: application/x-www-form-urlencoded`<br>
+3. POST 메소드(주로), **HTTP message body**<br> 데이터 형식은 주로 JSON 사용<br>
+
+#### 1️⃣ HTTP 요청 데이터 - GET/ 쿼리 파라미터
+GET 메소드로 데이터를 전달하는 경우, 메세지 바디 없이 url의 쿼리 파라미터에 데이터를 담아 보낸다.
+
+> 쿼리 파라미터는 url에 ?로 시작하여 &로 데이터를 추가하고 보낼 수 있다. ex: `localhost:8080/request-param?username=jyuny&age=22`
+
+```java
+@WebServlet(name="requestParamServlet",urlPatterns = "/request-param")
+public class RequestParamServlet extends HttpServlet {
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("[전체 파라미터 조회]"); 
+        request.getParameterNames().asIterator().forEachRemaining(paramName-> System.out.println(paramName+ "= " + request.getParameter(paramName)));
+
+        System.out.println("[단일 파라미터 조회]-start");
+        String username = request.getParameter("username"); 
+	String age = request.getParameter("age");
+        System.out.println("username = " + username);
+        System.out.println("age = " + age);
+	
+        System.out.println("이름이 같은 복수 파라미터 조회-start");
+        String[] usernames= request.getParameterValues("username");
+        for (String name:usernames){
+            System.out.println("username = " + name);
+        }
+    }
+}
+```
+- **`request.getParameter()`** 메소드로 파라미터의 value를 꺼내올 수 있다.
+- **`request.getParameterNames()`** 메소드로 파라미터의 이름을 모두 조회할 수 있다.
+- **`request.getParameterValues()`** 메소드로 복수 파라미터를 조회할 수 있다
+
+> `username=jyuny&username=kangin`과 같이 하나의 파라미터 이름에 값이 복수라면 `getParameterValues()`를 사용해야 한다. 하지만 실무에서 이럴만한 상황은 거의 없다 😊
+
