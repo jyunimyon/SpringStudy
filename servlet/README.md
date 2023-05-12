@@ -143,7 +143,7 @@ HTTP 요청 메세지로 클라이언트가 서버에 데이터를 전달하는 
 #### 1️⃣ HTTP 요청 데이터 - GET/ 쿼리 파라미터
 GET 메소드로 데이터를 전달하는 경우, 메세지 바디 없이 url의 쿼리 파라미터에 데이터를 담아 보낸다.
 
-> 쿼리 파라미터는 url에 ?로 시작하여 &로 데이터를 추가하고 보낼 수 있다. ex: `localhost:8080/request-param?username=jyuny&age=22`
+> 쿼리 파라미터는 url에 `?`로 시작하여 `&`로 데이터를 추가하고 보낼 수 있다. ex: `localhost:8080/request-param?username=jyuny&age=22`
 
 **RequestParamServlet.java**
 ```java
@@ -168,7 +168,7 @@ public class RequestParamServlet extends HttpServlet {
     }
 }
 ```
-- **`request.getParameter()`** 메소드로 파라미터의 value를 꺼내올 수 있다.
+- ⭐ **`request.getParameter()`** 메소드로 파라미터의 value를 꺼내올 수 있다.
 - **`request.getParameterNames()`** 메소드로 파라미터의 이름을 모두 조회할 수 있다.
 - **`request.getParameterValues()`** 메소드로 복수 파라미터를 조회할 수 있다
 
@@ -184,9 +184,14 @@ public class RequestParamServlet extends HttpServlet {
 > 즉, `request.getParameter()`은 GET url 쿼리 파라미터 형식과 POST html form 형식 모두 지원한다
 
 1. localhost:8080/basic/hello-form.html 실행
-2. 웹 브라우저에서 HTTP 메세지 생성
+2. 웹 브라우저에서 HTTP 메세지 생성<br> 요청 url: localhost:8080/request-param, content-type: application/x-www-form-urlencoded
+3. message body: `username=jyuny&age=22`
 
 > **postman을 이용한 테스트** 이런 테스트 하나하나에 `hello-form.html`와 같은 html form을 만들지 않고 다양한 타입의 데이터를 전송할 수 이따! 매우 편하다 🥲🥲
+
+postman을 이용한 테스트 결과 ➡️
+<img width="278" alt="query" src="https://github.com/jyunimyon/SpringStudy/assets/101866554/627730cf-fce1-4ae0-8b40-814b47b224de">
+> 나 왜 인텔리제이 한글 깨지지? 얼른 해결하좌...
 
 #### 3️⃣ HTTP 요청 데이터 - POST/ 메세지 바디 - 단순 텍스트
 
