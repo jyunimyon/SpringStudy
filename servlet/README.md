@@ -67,6 +67,7 @@ public class ServletApplication {
 ```
 - `@ServletComponentScan` : 사용자가 서블릿을 직접 등록해서 사용할 수 있도록 스프링이 지원하는 어노테이션이다. <u>하위 패키지들에서 서블릿 컨테이너를 모두 찾아(`@WebServlet`) 서블릿으로 등록</u>한다.
 <br><br>
+
 **HelloServlet.java**
 ```java
 @WebServlet(name="helloServlet",urlPatterns = "/hello")
@@ -86,5 +87,5 @@ public class HelloServlet extends HttpServlet {
 
 > 요청 보내기: `ServletApplication`을 실행하여 스프링이 올라오면, 로컬 웹브라우저에서 [localhost:8080](http://localhost:8080/)으로 실행한다.
 
-> `System.out.println` ➡️ 콘솔에 출력
+> `System.out.println` ➡️ 콘솔에 출력 <br>
 > `response.getWriter().write()` ➡️ 응답 페이지에 출력
