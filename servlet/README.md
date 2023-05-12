@@ -179,9 +179,10 @@ public class RequestParamServlet extends HttpServlet {
 
 **[`hello-form.html`](https://github.com/jyunimyon/SpringStudy/blob/main/servlet/src/main/webapp/basic/hello-form.html)**
 
-⭐ 쿼리 파라미터로 전달하는 것은 동일하기 때문에 쿼리 파라미터 조회 메소드를 그대로 사용한다. 즉, `request.getParameter()`은 **GET url 쿼리 파라미터 형식과 POST html form 형식 모두 지원**한다
-<br>
-동작 방식
+> ⭐ 쿼리 파라미터로 전달하는 것은 동일하기 때문에 쿼리 파라미터 조회 메소드를 그대로 사용한다. 즉, `request.getParameter()`은 **GET url 쿼리 파라미터 형식과 POST html form 형식 모두 지원**한다
+<br><br>
+
+**동작 방식**
 1. localhost:8080/basic/hello-form.html 실행
 2. 웹 브라우저에서 HTTP 메세지 생성<br> 요청 url: localhost:8080/request-param, content-type: application/x-www-form-urlencoded
 3. message body: `username=jyuny&age=22`
