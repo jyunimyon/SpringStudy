@@ -107,8 +107,7 @@ welcome page는 특정 url을 보내지 않고 [localhost:8080](http://localhost
 **`HttpServletRequest`** 는 HTTP 요청 메세지를 편리하게 사용할 수 있도록 메세지 파싱 정보를 담아둔 객체이다.
 
 > HTTP 요청 메세지는 START LINE, 헤더, 바디로 이루어진다 
-
-<br><br>
+<br>
 
 #### ✅ 기본 기능
 
