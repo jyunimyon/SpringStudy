@@ -52,3 +52,8 @@ HTTP 응답 정보를 편리하게 입력할 수 있다. 즉, Request 객체는 
 - settings ➡️ Build, Execution, Deployment ➡️ Build Tools ➡️ Gradle <br>
   Build and run using & Run tests using : Gradle ➡️ IntelliJ IDEA
   > 나같은 경우엔 무료 인텔리제이를 사용해서 위와 같이 바꿀 경우 War 파일에서 톰캣이 정상작동하지 않는다. 난 실행 속도가 느리더라도 좀 참아야 한다.
+
+---
+### Hello 서블릿
+
+`@ServletComponentScan`
