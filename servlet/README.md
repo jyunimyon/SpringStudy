@@ -89,3 +89,7 @@ public class HelloServlet extends HttpServlet {
 
 > `System.out.println` ➡️ 콘솔에 출력 <br>
 > `response.getWriter().write()` ➡️ 응답 페이지에 출력
+
+⭐ 스프링이 서블릿을 실행하는 원리는 다음과 같다.
+![IMG_0286](https://github.com/jyunimyon/SpringStudy/assets/101866554/a592b178-3d54-4c4e-a7b7-ba33f0cdab4a)
+
