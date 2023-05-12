@@ -86,7 +86,7 @@ public class HelloServlet extends HttpServlet {
 - `service()` : HTTP 요청을 통해 매핑된 url이 호출되면 서블릿 컨테이너가 실행하는 메소드이다. 이 곳에서 request 객체가 담고 있는 정보를 통해 response 객체에 정보를 넣는다.
 <br>
 
->  HTTP 요청 보내기: `ServletApplication`을 실행하여 스프링이 올라오면, 로컬 웹브라우저에서 [localhost:8080](http://localhost:8080/)으로 실행한다. **또는 postman 사용 😊**
+>  HTTP 요청 보내기: `ServletApplication`을 실행하여 스프링이 올라오면, 로컬 웹브라우저에서 [localhost:8080+http 요청 쿼리](http://localhost:8080/)으로 실행한다. **또는 postman 사용 😊**
 
 > `System.out.println` ➡️ 콘솔에 출력 <br>
 > `response.getWriter().write()` ➡️ 응답 페이지에 출력
@@ -94,3 +94,9 @@ public class HelloServlet extends HttpServlet {
 ⭐ 스프링이 서블릿을 실행하는 원리는 다음과 같다.
 ![IMG_0286](https://github.com/jyunimyon/SpringStudy/assets/101866554/a592b178-3d54-4c4e-a7b7-ba33f0cdab4a)
 
+**Welcome page 추가**
+
+welcome page는 특정 url을 보내지 않고 [localhost:8080](http://localhost:8080/)만 실행했을 때 볼 수 있는 페이지이다.<br>
+`webapp` 디렉토리에 `index.html` 파일을 만들어 사용한다.<br>
+
+> webapp 디렉토리는 정적 파일(HTML, CSS, JavaScript, 이미지 등)을 저장 및 제공하는 공간이다. 정적 파일을 제공해달라는 요청이 들어오면 해당 파일을 제공한다. 그럼 디렉토리 내의 정적 파일들 중에서 index.html 파일이 기본으로 실행되는 이유는 무엇일까? 그 이유는 대부분의 웹 서버는 기본적으로 index.html 파일을 찾아서 welcome page로 실행시키기 때문이다. 
