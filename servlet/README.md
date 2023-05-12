@@ -100,3 +100,35 @@ welcome page는 특정 url을 보내지 않고 [localhost:8080](http://localhost
 `webapp` 디렉토리에 `index.html` 파일을 만들어 사용한다.<br>
 
 > webapp 디렉토리는 정적 파일(HTML, CSS, JavaScript, 이미지 등)을 저장 및 제공하는 공간이다. 정적 파일을 제공해달라는 요청이 들어오면 해당 파일을 제공한다. 그럼 디렉토리 내의 정적 파일들 중에서 index.html 파일이 기본으로 실행되는 이유는 무엇일까? 그 이유는 대부분의 웹 서버는 기본적으로 index.html 파일을 찾아서 welcome page로 실행시키기 때문이다. 
+
+---
+### HttpServletRequest -개요
+
+**`HttpServletRequest`** 는 HTTP 요청 메세지를 편리하게 사용할 수 있도록 메세지 파싱 정보를 담아둔 객체이다.
+
+> HTTP 요청 메세지는 START LINE, 헤더, 바디로 이루어진다 
+<br><br>
+
+✅ 기본 기능
+<br>
+1. start line 정보
+2. 헤더 정보
+3. 헤더 조회
+4. 기타 정보
+<br><br>
+
+**RequestHeaderServlet.java**
+```java
+@WebServlet(name="requestHeaderServlet",urlPatterns = "/request-header")
+public class RequestHeaderServlet extends HttpServlet {
+    //header 정보를 어떻게 출력하는지 알아보자
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        printStartLine(request);
+        printHeaders(request);
+        printHeaderUtils(request);
+    }
+...
+}
+```
+> 엄청 중요한 내용은 없고 조금 중요하다 싶으면 [코드](https://github.com/jyunimyon/SpringStudy/blob/main/servlet/src/main/java/hello/servlet/basic/request/RequestHeaderServlet.java)에 주석으로 달아두었다. 
