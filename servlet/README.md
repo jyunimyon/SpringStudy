@@ -85,6 +85,7 @@ public class HelloServlet extends HttpServlet {
 - `@WebServlet` : 사용자가 url을 실행하였을 때, 해당 url에 매칭되는 자바파일이 실행되어야 한다. 즉, `@WebServlet`은 <U> 어노테이션을 통한 url 매핑 역할을 한다 </U>. 또한 스프링에게 이 클래스가 서블릿임을 알려준다. `name` 은 서블릿의 이름을, `urlPatterns`는 매칭되는 url의 정보를 담는다.  
 - `service()` : HTTP 요청을 통해 매핑된 url이 호출되면 서블릿 컨테이너가 실행하는 메소드이다. 이 곳에서 request 객체가 담고 있는 정보를 통해 response 객체에 정보를 넣는다.
 <br>
+
 >  HTTP 요청 보내기: `ServletApplication`을 실행하여 스프링이 올라오면, 로컬 웹브라우저에서 [localhost:8080](http://localhost:8080/)으로 실행한다. **또는 postman 사용 😊**
 
 > `System.out.println` ➡️ 콘솔에 출력 <br>
