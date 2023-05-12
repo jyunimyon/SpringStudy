@@ -55,5 +55,31 @@ HTTP 응답 정보를 편리하게 입력할 수 있다. 즉, Request 객체는 
 
 ---
 ### Hello 서블릿
+`ServletApplication.java`
+```java
+@ServletComponentScan // 서블릿 자동 등록
+@SpringBootApplication
+public class ServletApplication {
+	public static void main(String[] args) {
+		SpringApplication.run(ServletApplication.class, args);
+	}
+}
+```
+<br>
 
-`@ServletComponentScan`
+`@ServletComponentScan` : 사용자가 서블릿을 직접 등록해서 사용할 수 있도록 스프링이 지원하는 어노테이션이다. <u>하위 패키지들에서 서블릿 컨테이너를 모두 찾아(`@WebServlet`) 서블릿으로 등록</u>한다.
+<br><br>
+`HelloServlet.java`
+<br>
+```java
+@WebServlet(name="helloServlet",urlPatterns = "/hello")
+public class HelloServlet extends HttpServlet {
+    @Override // 서블릿이 실행이 되면 이 메소드가 호출이 됨
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    ...
+  }
+}
+```
+- `@WebServlet` : 사용자가 url을 실행하였을 때, 해당 url에 매칭되는 자바파일이 실행되어야 한다. 즉, `@WebServlet`은 <U>어노테이션을 통한 url 매핑 역할을 한다</U>. 또한 스프링에게 이 클래스가 서블릿임을 알려준다. `name` 은 서블릿의 이름을, `urlPatterns`는 매칭되는 url의 정보를 담는다.  
+- `service()` : 서블릿이 실행되면 호출되는 메소드이다. 이 곳에서 request 객체가 담고 있는 정보를 통해 response 객체에 정보를 넣는다.
+
