@@ -299,6 +299,32 @@ public class ResponseHeaderServlet extends HttpServlet {
         PrintWriter writer=response.getWriter();
         writer.println("ok");
     }
+    ...
+ }
 ```
-1. `response.setStatus()`를 통해 status 코드를 정해줄 수 있다. 숫자(`200`)를 직접 명시할 수도 있지만 `SC_OK` 처럼 의미를 바로 확인할 수 있도록 정의되어 있는 것을 쓰는 것이 좋다. <img width="485" alt="response_200" src="https://github.com/jyunimyon/SpringStudy/assets/101866554/3b0643e5-a81e-440d-b824-3e2a0a00a725"><img width="462" alt="response_400" src="https://github.com/jyunimyon/SpringStudy/assets/101866554/c6196577-4eeb-4f1a-8f91-4de9512f8d6e">
+1. `response.setStatus()`를 통해 status 코드를 정해줄 수 있다. 숫자(`200`)를 직접 명시할 수도 있지만 `SC_OK` 처럼 의미를 바로 확인할 수 있도록 정의되어 있는 것을 쓰는 것이 좋다.<br><br><img width="485" alt="response_200" src="https://github.com/jyunimyon/SpringStudy/assets/101866554/3b0643e5-a81e-440d-b824-3e2a0a00a725"><img width="462" alt="response_400" src="https://github.com/jyunimyon/SpringStudy/assets/101866554/c6196577-4eeb-4f1a-8f91-4de9512f8d6e">
 2. `response.setHeader(name, value)`를 통해 여러가지 response 헤더의 정보를 설정할 수 있다.<br> - charset 설정을 해주지 않으면 내장 톰캣이 자동으로 설정하는데 잘못하면 한글이 깨질 수도 있다<br> - 내가 원하는 임의의 헤더를 만들 수도 있다. 응답 헤더에 내가 만든 헤더의 정보가 실린다. 
+
+```java
+private void content(HttpServletResponse response) {
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("utf-8");
+    }
+```
+- `response.setHeader("Content-Type", "text/plain;charset=utf-8")`대신에 위와 같은 편의 메소드를 이용하여 `content-type`과 `charset`을 설정해줄 수 있다.
+
+```java
+private void cookie(HttpServletResponse response) {
+        Cookie cookie = new Cookie("myCookie", "good");
+        cookie.setMaxAge(600); //유효 시간 600초
+        response.addCookie(cookie);
+    }
+```
+- 위와 같은 편의 메소드로 쿠키 또한 편하게 만들 수 있다. 다음은 [localhost:8080/response-header](http://localhost:8080/response-header) 실행 후 `Set-Cookie`속성의 결과와 새로고침 후 `Cookie` 속성의 결과이다.<br><br><img width="352" alt="cookie" src="https://github.com/jyunimyon/SpringStudy/assets/101866554/5a428eed-0667-4be4-be5a-50f4fc661f66"><img width="363" alt="cookie_f5" src="https://github.com/jyunimyon/SpringStudy/assets/101866554/d1e93802-bdca-4b7a-a959-945c4f3630c5">
+
+```java
+private void redirect(HttpServletResponse response) throws IOException {
+   response.sendRedirect("/basic/hello-form.html");    
+    } 
+```
+- redirect도 쉽게 할 수 있다. [localhost:8080/response-header](http://localhost:8080/response-header)을 실행하면 자동으로 hello-form.html로 이동한다. 다음 결과에서 위 url로 요청했을 경우 302 리디렉션 상태 코드가 뜨고, 다음에 redirect url로 요청을 재전송하는 것을 볼 수 있다. <br><br> <img width="536" alt="질문" src="https://github.com/jyunimyon/SpringStudy/assets/101866554/afede879-89fc-4564-8e12-aa2629230053">
