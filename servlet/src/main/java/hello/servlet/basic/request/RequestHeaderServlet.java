@@ -13,8 +13,6 @@ import java.util.Enumeration;
 @WebServlet(name="requestHeaderServlet",urlPatterns = "/request-header")
 public class RequestHeaderServlet extends HttpServlet {
     //header 정보를 어떻게 출력하는지 알아보자
-
-
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         printStartLine(request);
