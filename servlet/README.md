@@ -266,4 +266,40 @@ postman에서 다음과 같이 데이터를 전송하면
 콘솔에서 다음과 같은 결과를 얻을 수 있다 ➡️
 <img width="283" alt="json" src="https://github.com/jyunimyon/SpringStudy/assets/101866554/0b56fde0-0b68-4f9e-b1d4-3c363024c4e3">
 
+---
+### HttpServletResponse
 
+`HttpServletResponse` 객체의 역할은 다음과 같다.
+- HTTP 응답 코드 지정
+- 헤더 생성
+- 바디 생성
+- Content-type
+- 쿠키
+- redirect
+
+#### HttpServletResponse 기본 사용법
+
+**ResponseHeaderServlet.java**
+```java
+@WebServlet(name = "responseHeaderServlet", urlPatterns = "/response-header")
+public class ResponseHeaderServlet extends HttpServlet {
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //status line
+        response.setStatus(HttpServletResponse.SC_OK);
+        //response-header
+        response.setHeader("Content-type","text/plain;charset=utf-8");
+        response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");// 캐시 무효화
+        response.setHeader("Pragma","no-cache");
+        response.setHeader("my-header","hello");
+        //header의 편의 메소드
+        //content(response);
+        //cookie(response);
+        //redirect(response);
+        PrintWriter writer=response.getWriter();
+        writer.println("ok");
+    }
+```
+1. `response.setStatus()`를 통해 status 코드를 정해줄 수 있다. 숫자(`200`)를 직접 명시할 수도 있지만 `SC_OK` 처럼 의미를 바로 확인할 수 있도록 정의되어 있는 것을 쓰는 것이 좋다.<br> <img width="485" alt="response_200" src="https://github.com/jyunimyon/SpringStudy/assets/101866554/3b0643e5-a81e-440d-b824-3e2a0a00a725"> <img width="462" alt="response_400"src="https://github.com/jyunimyon/SpringStudy/assets/101866554/63f1c07f-b775-44f1-9052-4b08433f65db">
+
+2. `response.setHeader(name, value)`를 통해 여러가지 response 헤더의 정보를 설정할 수 있다.<br> - charset 설정을 해주지 않으면 내장 톰캣이 자동으로 설정하는데 잘못하면 한글이 깨질 수도 있다<br> - 내가 원하는 임의의 헤더를 만들 수도 있다. http 응답의 헤더에 내가 만든 헤더의 정보가 실린다. 
