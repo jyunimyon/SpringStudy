@@ -336,7 +336,6 @@ private void redirect(HttpServletResponse response) throws IOException {
 - HTML 응답
 - HTTP API 응답 (json)
 
-<br>
 **ResponseHtmlServlet.java**
 ```java
 @Override
