@@ -328,3 +328,58 @@ private void redirect(HttpServletResponse response) throws IOException {
     } 
 ```
 - redirect도 쉽게 할 수 있다. [localhost:8080/response-header](http://localhost:8080/response-header)을 실행하면 자동으로 hello-form.html로 이동한다. 다음 결과에서 위 url로 요청했을 경우 302 리디렉션 상태 코드가 뜨고, 다음에 redirect url로 요청을 재전송하는 것을 볼 수 있다. <br><br> <img width="536" alt="질문" src="https://github.com/jyunimyon/SpringStudy/assets/101866554/afede879-89fc-4564-8e12-aa2629230053">
+
+#### 1️⃣ HTTP 응답 데이터 - 단순 텍스트, HTML
+
+결국 응답도 대부분 다음 3가지 중 하나로 보내게 된다.
+- 단순 텍스트 응답 `writer.println("ok");` (기본 사용법에서 했던 것)
+- HTML 응답
+- HTTP API 응답 (json)
+
+<br>
+**ResponseHtmlServlet.java**
+```java
+@Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        response.setCharacterEncoding("utf-8");
+
+        PrintWriter writer=response.getWriter();
+	//서블릿으로 html 렌더링
+        writer.println("<html>");
+        writer.println("<body>");
+        writer.println("<div>안뇽안뇽 나는 쥬니얌</div>");
+        writer.println("</body>");
+        writer.println("</html>");
+    }
+```
+- **응답을 보낼 때 제일 먼저 할 것은 `content-type` 설정**이다.
+- 렌더링 하는 부분의 로직을 바꾸면 동적으로도 html 생성이 가능하다(ex: `if`문 사용).
+
+결과는 다음과 같다.<br>
+<img width="611" alt="html결과" src="https://github.com/jyunimyon/SpringStudy/assets/101866554/f070a997-1dfd-4f3c-9377-cd8e54b26bd7">
+
+#### 2️⃣ HTTP 응답 데이터 - HTTP API(json)
+
+주로 HTTP API를 만들 때 사용하는 응답 데이터를 json 형식으로 보내는 방법에 대해 알아보자.
+<br><br>
+**ResponseJsonServlet.java**
+```java
+private ObjectMapper objectMapper=new ObjectMapper();
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("application/json");
+        response.setCharacterEncoding("utf-8");
+
+        HelloData helloData=new HelloData();
+        helloData.setUsername("jyuny");
+        helloData.setAge(22);
+
+	String result = objectMapper.writeValueAsString(helloData);
+        response.getWriter().write(result);
+    }
+```
+- ⭐ 요청 데이터로 온 json을 파싱할 때 파싱할 수 있는 자바 객체인 HelloData로 바꾸었다. json으로 응답을 보낼 때는 이에 반대로 HelloData 객체에 정보를 담아 이것을 json 형식으로 변환하여 응답을 보내야 한다. 라이브러리는 동일하다.
+
+결과는 다음과 같다.<br>
+<img width="572" alt="json결과" src="https://github.com/jyunimyon/SpringStudy/assets/101866554/6f2cfb98-5050-4e48-8c05-c03d178745c6">
